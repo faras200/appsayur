@@ -49,12 +49,23 @@ class DashboardPostController extends Controller
             'slug'  => 'required|unique:posts',
             'image'  => 'required|max:5000',
             'category_id' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'harga' => 'required'
         ]);
 
         // if ($request->file('image')) {
         //     $validasi['image'] = $request->file('image')->store('post-images');
         // }
+
+        // Menghapus tanda mata uang dan pemisah ribuan
+        $numeric_amount = str_replace(['Rp. ', '.'], '', $validasi['harga']);
+
+        // Menghapus pemisah ribuan berulang
+        $numeric_amount = str_replace('.', '', $numeric_amount);
+
+        // Mengonversi menjadi angka
+        $numeric_amount = (int)$numeric_amount;
+        $validasi['harga'] = $numeric_amount;
         $validasi['user_id'] = auth()->user()->id;
         $validasi['excerpt'] = Str::limit(strip_tags($request->body), 150);
 
@@ -104,15 +115,24 @@ class DashboardPostController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required',
             'image'  => 'required|max:5000',
-            'body' => 'required'
+            'body' => 'required',
+            'harga' => 'required'
         ];
-
 
         if ($request->slug != $post->slug) {
             $rules['slug'] = 'required|unique:posts';
         }
         $validasi = $request->validate($rules);
+        
+        $numeric_amount = str_replace(['Rp. ', '.'], '', $validasi['harga']);
 
+        // Menghapus pemisah ribuan berulang
+        $numeric_amount = str_replace('.', '', $numeric_amount);
+
+        // Mengonversi menjadi angka
+        $numeric_amount = (int)$numeric_amount;
+        $validasi['harga'] = $numeric_amount;
+        
         $validasi['user_id'] = auth()->user()->id;
         $validasi['excerpt'] = Str::limit(strip_tags($request->body), 150);
 

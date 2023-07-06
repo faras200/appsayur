@@ -72,7 +72,7 @@
                         <div class="card-header card-avatar">
                             <a href="lapak/{{ $author->username }}">
                                 <img class="img"
-                                    src="{{ is_null($author->lapak->logo) ? asset('images/logo_ormawa.jpg') : $author->lapak->logo }}" />
+                                    src="{{ is_null($author->lapak->logo) ? asset('images/logo_lapak.png') : $author->lapak->logo }}" />
                             </a>
                         </div>
                         <div class="card-body ">
@@ -89,7 +89,7 @@
                 </div>
             @endforeach
             <div class="col-12 text-center mb-5">
-                <a href="/lapak" class="btn btn-rose btn-round">Lihat Semua Lapak <i class="material-icons">
+                <a href="/lapak" class="btn btn-success btn-round">Lihat Semua Lapak <i class="material-icons">
                         double_arrow
                     </i></a>
             </div>

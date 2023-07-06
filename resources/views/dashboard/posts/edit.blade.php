@@ -36,6 +36,17 @@
                                 @enderror
 
                             </div>
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class=" col-form-label">Harga</label>
+                                <input type="text" name="harga" id="harga" class="form-control"
+                                    value="{{ old('harga', $post->harga) }}" required>
+                                @error('harga')
+                                    <div class="text-danger"> {{ $message }} </div>
+                                @enderror
+
+                            </div>
                             {{-- <div class="col-md-6 mb-4">
                                 <img class="img-preview img-fluid col-sm-5" alt="">
                                 <label class=" col-form-label">Image</label>

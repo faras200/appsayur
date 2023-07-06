@@ -4,17 +4,17 @@
     <div class="container">
         <div class="row ">
             <div class="col-12 text-center">
-                <h2 class="h2 ">Organisasi Mahasiswa</h2>
+                <h2 class="h2 ">Lapak Pedagang</h2>
             </div>
         </div>
         <div class="row">
             @foreach ($authors as $author)
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="card card-profile card-plain">
                         <div class="card-header card-avatar">
                             <a href="lapak/{{ $author->username }}">
                                 <img class="img"
-                                    src="{{ is_null($author->lapak->logo) ? asset('images/logo_ormawa.jpg') : $author->lapak->logo }}" />
+                                    src="{{ is_null($author->lapak->logo) ? asset('images/logo_lapak.png') : $author->lapak->logo }}" />
                             </a>
                         </div>
                         <div class="card-body ">

@@ -40,12 +40,12 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-danger card-header-icon">
+                    <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon" style="padding: 5px !important;">
                             <i class="material-icons">description</i>
                         </div>
-                        <p class="card-category">Arsip Pengajuan</p>
-                        <h3 class="card-title">{{ $pengajuan }}</h3>
+                        <p class="card-category">Category</p>
+                        <h3 class="card-title">{{ $category }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -58,17 +58,17 @@
 
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-header card-header-primary card-header-icon">
                         <div class="card-icon" style="padding: 5px !important;">
-                            <i class="material-icons">description</i>
+                            <i class="material-icons">request_quote</i>
                         </div>
-                        <p class="card-category">Category</p>
-                        <h3 class="card-title">{{ $category }}</h3>
+                        <p class="card-category">Total Transaksi</p>
+                        <h3 class="card-title">{{ $dana }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">description</i>
-                            <a href="/dashboard/pengajuan">Lihat semua..</a>
+                            <i class="material-icons">request_quote</i>
+                            <a href="/dashboard/ambil-dana">Lihat semua..</a>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                             <div class="card-icon" style="padding: 5px !important;">
                                 <i class="material-icons">group</i>
                             </div>
-                            <p class="card-category">Anggota Ormawa</p>
+                            <p class="card-category">Admin Lapak</p>
                             <h3 class="card-title">{{ $anggota }}</h3>
                         </div>
                         <div class="card-footer">
@@ -151,40 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon" style="padding: 5px !important;">
-                                <i class="material-icons">post_add</i>
-                            </div>
-                            <p class="card-category">Pengajuan</p>
-                            <h3 class="card-title">{{ $pengajuan }}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">post_add</i>
-                                <a href="/dashboard/pengajuan">Lihat semua..</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-primary card-header-icon">
-                            <div class="card-icon" style="padding: 5px !important;">
-                                <i class="material-icons">request_quote</i>
-                            </div>
-                            <p class="card-category">Pengambilan Dana</p>
-                            <h3 class="card-title">{{ $dana }}</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">request_quote</i>
-                                <a href="/dashboard/ambil-dana">Lihat semua..</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">

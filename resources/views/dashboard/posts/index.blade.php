@@ -36,6 +36,7 @@
                                     <th>No</th>
                                     <th>Title</th>
                                     <th>Category</th>
+                                    <th>Harga</th>
                                     <th>Author</th>
                                     <th class="disabled-sorting text-right">Actions</th>
                                 </tr>
@@ -46,6 +47,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->category->name }}</td>
+                                        <td>Rp. {{ number_format($post->harga, 0, ',', '.');}}</td>
                                         <td>{{ $post->user->name }}</td>
                                         <td class="text-right">
                                             <a href="/dashboard/posts/{{ $post->slug }}"

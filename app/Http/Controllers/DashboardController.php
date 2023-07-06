@@ -70,7 +70,7 @@ class DashboardController extends Controller
         $auth = 'Basic ' . $base;
         $user = Auth::user();
         $jayParsedAry2 = [
-            "payment_type" => $request->payment_type,
+            "payment_type" => 'gopay',
             "transaction_details" => [
                 "gross_amount" => 250000,
                 "order_id" => 'INV' . date('ymd') . rand(99999999999, 999999999999999999),
@@ -98,5 +98,11 @@ class DashboardController extends Controller
         } catch (\Exception $th) {
             throw $th;
         }
+
+        return $output;
+    }
+
+    public function notifhandler(){
+        $notif = new \Midtrans\Notification();
     }
 }

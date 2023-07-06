@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li class=" nav-item">
-                    <a href="/ormawa" class=" nav-link">
+                    <a href="/lapak" class=" nav-link">
                         <i class="material-icons">storefront</i> Lapak
                     </a>
                 </li>

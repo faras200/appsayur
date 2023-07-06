@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\EmailNotificationController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LapakController;
 use App\http\Controllers\LoginController;
 use App\Http\Controllers\OrmawaController;
@@ -94,6 +95,7 @@ Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'check
 
 Route::group(['middleware' => ['auth:user,admin']], function () {
     Route::post('/logout', [LoginController::class, 'logout']);
+    Route::get('/dashboard/bayar', [DashboardController::class, 'bayar']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/dashboard/posts', DashboardPostController::class);
     Route::get('/dashboard/posts/delete/{id}', [DashboardPostController::class, 'destroy']);
@@ -132,4 +134,6 @@ Route::group(['middleware' => ['auth:user,admin']], function () {
         return response()->json($pengajuan);
     });
     Route::get('/kirimemail', [EmailNotificationController::class, 'index']);
+
+    Route::resource('/keranjang', KeranjangController::class);
 });

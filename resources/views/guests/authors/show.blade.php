@@ -6,7 +6,7 @@
             <div class="col-md-6 ml-auto mr-auto">
                 <div class="profile mt-4 text-center">
                     <div class="avatar">
-                        <img src="{{ is_null($author->lapak->logo) ? asset('images/logo_ormawa.jpg') : $author->lapak->logo }}"
+                        <img src="{{ is_null($author->lapak->logo) ? asset('images/logo_lapak.png') : $author->lapak->logo }}"
                             alt="Circle Image" style="max-height: 250px !important"
                             class="img-raised rounded-circle img-fluid">
                     </div>
