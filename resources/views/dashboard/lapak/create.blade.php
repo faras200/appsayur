@@ -24,11 +24,19 @@
                                     <div class="text-danger"> {{ $message }} </div>
                                 @enderror
                             </div>
+
                             <div class="col-md-6 mb-4">
                                 <label class="">Email Lapak</label>
                                 <input type="email" name="email" id="email"class="form-control" required autofocus
                                     value="{{ old('email') }}">
                                 @error('email')
+                                    <div class="text-danger"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="">Alamat Lapak</label>
+                                <textarea name="alamat" class="form-control"> {{ old('alamat') }} </textarea>
+                                @error('alamat')
                                     <div class="text-danger"> {{ $message }} </div>
                                 @enderror
                             </div>

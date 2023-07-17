@@ -53,7 +53,9 @@
                                         by
                                         <a href="/home?authors={{ $pos->user->username }}"><b>{{ $pos->user->username }}
                                             </b>
-                                        </a>, {{ $pos->created_at->diffForHumans() }}
+                                        </a>, {{ $pos->user->lapak->alamat ?? '' }}
+                                        <br>
+                                        {{ $pos->created_at->diffForHumans() }}
                                     </p>
                                 </div>
                             </div>

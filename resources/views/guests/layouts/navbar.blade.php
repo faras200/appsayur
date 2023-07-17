@@ -31,8 +31,8 @@
 
                 </li>
                 <li class=" nav-item">
-                    <a href="/posts" class=" nav-link">
-                        <i class="material-icons">apps</i> All Produk
+                    <a href="/keranjang" class=" nav-link">
+                        <i class="material-icons">shopping_cart</i> Keranjang
                     </a>
 
                 </li>

@@ -22,7 +22,7 @@
 <body class="blog-posts sidebar-collapse">
 
     @include('guests.layouts.navbar')
-    @if (!Request::is('login'))
+    @if (!Request::is('login') && !Request::is('register'))
         @if (Request::is('posts*'))
             <div class="page-header header-filter header-small" data-parallax="true"
                 style="background-image: url('{{ is_null($post['image']) ? $image : $post['image'] }}'); ">

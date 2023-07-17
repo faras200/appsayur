@@ -10,9 +10,9 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('register.index', [
+        return view('guests.register.index', [
             'title' => 'Register',
-            'active' => 'register'
+            'active' => 'register',
         ]);
     }
 
@@ -22,7 +22,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'username' => ['required', 'min:5', 'max:20', 'unique:users'],
             'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:5|max:255',
         ]);
 
         $validasi['password'] = Hash::make($validasi['password']);

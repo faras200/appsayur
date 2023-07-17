@@ -86,7 +86,7 @@ Route::get('/authors/{authors:username}', function (User $authors) {
 });
 
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/register', [RegisterController::class, 'index']);
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/register', [RegisterController::class, 'store']);
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);

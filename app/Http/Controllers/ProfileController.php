@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lapak;
 use App\Models\Ormawa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -15,9 +17,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $lapak = Lapak::where('id', auth()->user()->lapak_id)->first();
+
         return view('dashboard.profile.index', [
             'user' => User::where('id', auth()->user()->id)->first(),
-            'ormawa' => Ormawa::where('id', auth()->user()->ormawa_id)->first()
+            'ormawa' => $lapak ?? null,
         ]);
     }
 
@@ -82,8 +86,8 @@ class ProfileController extends Controller
             'profil' => 'required',
             'logo' => 'required',
         ]);
-        
-        Ormawa::where('id',$id)->update($validasi);
+
+        Ormawa::where('id', $id)->update($validasi);
 
         return redirect('/dashboard/profile')->with('success', 'Berhasil Mengubah Data Profil!!');
     }

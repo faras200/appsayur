@@ -43,8 +43,8 @@ class LapakController extends Controller
         $validasi = $request->validate([
             'nama' => 'required',
             'email' => 'required|email:dns',
+            'alamat' => 'required',
         ]);
-        $validasi['profil'] = $request->input('profil');
         $validasi['logo'] = $request->input('logo');
 
         Lapak::create($validasi);
@@ -92,6 +92,7 @@ class LapakController extends Controller
             'nama' => 'required',
             'email' => 'required|email:dns',
             'logo' => 'required',
+            'alamat' => 'required',
         ]);
 
         Lapak::where('id', $id)->update($validasi);

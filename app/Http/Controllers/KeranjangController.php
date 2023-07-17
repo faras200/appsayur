@@ -15,9 +15,10 @@ class KeranjangController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = auth()->user();
+        dd($user);
         return view('guests.keranjang.index', [
-            'keranjangs' => Keranjang::where('user_id', $user->id)
+            'keranjangs' => Keranjang::where('user_id', $user->id)->get(),
         ]);
     }
 

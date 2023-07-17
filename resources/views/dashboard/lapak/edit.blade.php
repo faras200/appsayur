@@ -35,6 +35,14 @@
                             </div>
 
                             <div class="col-md-6 mb-4">
+                                <label class="">Alamat Lapak</label>
+                                <textarea name="alamat" class="form-control"> {{ old('alamat', $lapak->alamat) }} </textarea>
+                                @error('alamat')
+                                    <div class="text-danger"> {{ $message }} </div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6 mb-4">
                                 <label class=" col-form-label">Logo</label>
                                 <div class="input-group">
                                     <input id="thumbnail" class="form-control" type="text" name="logo"

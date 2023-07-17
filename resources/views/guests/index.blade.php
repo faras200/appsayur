@@ -27,7 +27,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mt-4">
                 <a href="/posts?category=sayuran" class="btn btn-success btn-round">Lihat Semua Sayuran <i
                         class="material-icons">
                         double_arrow
@@ -40,7 +40,8 @@
         <div class="row">
             @foreach ($kegiatans as $kegiatan)
                 <div class="col-md-4 col-xs-6">
-                    <div class="card card-raised card-background" style="background-image: url('{{ $kegiatan->image }}')">
+                    <div class="card card-raised card-background"
+                        style="background-image: url('{{ $kegiatan->image }}'); height:280px;">
                         <div class="card-body">
                             <h6 class="card-category text-info">{{ $kegiatan->category->slug }}</h6>
                             <a href="#pablo">
@@ -49,14 +50,18 @@
                             <p class="card-description">
                                 {{ $kegiatan->excerpt }}
                             </p>
+                        </div>
+                        <div class="card-footer justify-content-center"
+                            style="z-index: 200; margin-top: -25px !important; ">
                             <a href="/posts/{{ $kegiatan->slug }}" class="btn btn-danger btn-round">
                                 <i class="material-icons">shopping_cart</i> Order Now
                             </a>
                         </div>
+
                     </div>
                 </div>
             @endforeach
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mt-4">
                 <a href="/posts?category=buah-buahan" class="btn btn-success btn-round">Lihat Semua Buah <i
                         class="material-icons">
                         double_arrow

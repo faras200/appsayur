@@ -47,7 +47,7 @@ class PostController extends Controller
         return view('guests.index', [
             "beritas" => Post::latest()->filter(['category' => 'sayuran'])->limit(3)->get(),
             "kegiatans" => Post::latest()->filter(['category' => 'buah-buahan'])->limit(3)->get(),
-            'ormawas' => User::with('ormawa')->limit(4)->get(),
+            'ormawas' => User::where('role', 'pedagang')->with('lapak')->limit(4)->get(),
         ]);
     }
 }

@@ -37,6 +37,7 @@
                                     <th>No</th>
                                     <th>Nama Lapak</th>
                                     <th>Email</th>
+                                    <th>Alamat</th>
                                     <th class="disabled-sorting text-right">Aksi</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                         <td>{{ $lapak->nama }}</td>
                                         {{-- <td>{{ 0 }}</td> --}}
                                         <td>{{ $lapak->email }}</td>
+                                        <td>{{ $lapak->alamat }}</td>
                                         <td class="text-right">
                                             <a href="/dashboard/lapak/{{ $lapak->id }}/edit"
                                                 class="btn btn-link btn-warning btn-just-icon edit"><i

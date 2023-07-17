@@ -12,11 +12,11 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        Admin {{ auth()->user()->name }}
+                        {{ auth()->user()->role == 'pembeli' ? 'User' : 'Admin' }} {{ auth()->user()->name }}
                         <b class="caret"></b>
                     </span>
                 </a>
-                @can('role', 'ormawa', 'pedaganng')
+                @can('role', ['pembeli', 'pedagang'])
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
                             <li class="nav-item">
@@ -77,12 +77,11 @@
                     </a>
                 </li>
             @endcan
-            @can('role', 'ormawa', 'pedaganng')
-                <li
-                    class="nav-item {{ Request::is('dashboard/' . auth()->user()->ormawa_id . '/anggota*') ? 'active' : '' }} ">
-                    <a class="nav-link" href="/dashboard/{{ auth()->user()->ormawa_id }}/anggota">
-                        <i class="material-icons">group</i>
-                        <p> Anggota </p>
+            @can('role', ['pembeli', 'pedagang'])
+                <li class="nav-item {{ Request::is('dashboard/transaksi') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/dashboard/transaksi">
+                        <i class="material-icons">payments</i>
+                        <p> Transaksi </p>
                     </a>
                 </li>
             @endcan
@@ -99,34 +98,36 @@
                 </a>
             </li> --}}
             @canany('role', ['administrator', 'pedagang'])
-                <li class="nav-item {{ Request::is('dashboard/arsip-pengajuan*') ? 'active' : '' }} ">
-                    <a class="nav-link" href="/dashboard/arsip-pengajuan">
+                <li class="nav-item {{ Request::is('dashboard/laporan*') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/dashboard/laporan">
                         <i class="material-icons">description</i>
                         <p>Laporan Transaksi </p>
                     </a>
                 </li>
             @endcanany
-            <li class="nav-item {{ Request::is('dashboard/arsip-file*') ? 'active' : '' }} ">
-                <a class="nav-link" href="/dashboard/arsip-file">
-                    <i class="material-icons">folder</i>
-                    <p>Arsip File </p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#konten">
-                    <i class="material-icons">dashboard_customize</i>
-                    <p> Kelola Konten
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="konten">
-                    <ul class="nav">
-                        <li class="nav-item {{ Request::is('dashboard/posts*') ? 'active' : '' }} ">
-                            <a class="nav-link" href="/dashboard/posts">
-                                <i class="material-icons">assignment</i>
-                                <p> My Posts </p>
-                            </a>
-                        </li>
+            @canany('role', ['administrator', 'pedagang'])
+                <li class="nav-item {{ Request::is('dashboard/arsip-file*') ? 'active' : '' }} ">
+                    <a class="nav-link" href="/dashboard/arsip-file">
+                        <i class="material-icons">folder</i>
+                        <p>Arsip File </p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#konten">
+                        <i class="material-icons">dashboard_customize</i>
+                        <p> Kelola Konten
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="konten">
+                        <ul class="nav">
+                            <li class="nav-item {{ Request::is('dashboard/posts*') ? 'active' : '' }} ">
+                                <a class="nav-link" href="/dashboard/posts">
+                                    <i class="material-icons">assignment</i>
+                                    <p> My Posts </p>
+                                </a>
+                            </li>
+                        @endcanany
                         @canany('role', ['administrator'])
                             <li class="nav-item {{ Request::is('dashboard/categories*') ? 'active' : '' }} ">
                                 <a class="nav-link" href="/dashboard/categories">
