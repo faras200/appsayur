@@ -5,12 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Keranjang extends Model
+class TransaksiDetail extends Model
 {
     use HasFactory;
-    protected $table = 'keranjangs';
+    protected $table = 'detail_transaksi';
 
     protected $guarded = ['id'];
+
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class);
+    }
 
     public function post()
     {

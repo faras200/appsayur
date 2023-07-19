@@ -105,22 +105,16 @@
                     </a>
                 </li>
             @endcanany
-            @canany('role', ['administrator', 'pedagang'])
-                <li class="nav-item {{ Request::is('dashboard/arsip-file*') ? 'active' : '' }} ">
-                    <a class="nav-link" href="/dashboard/arsip-file">
-                        <i class="material-icons">folder</i>
-                        <p>Arsip File </p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#konten">
-                        <i class="material-icons">dashboard_customize</i>
-                        <p> Kelola Konten
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="konten">
-                        <ul class="nav">
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#konten">
+                    <i class="material-icons">dashboard_customize</i>
+                    <p> Kelola Konten
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="konten">
+                    <ul class="nav">
+                        @canany('role', ['pedagang'])
                             <li class="nav-item {{ Request::is('dashboard/posts*') ? 'active' : '' }} ">
                                 <a class="nav-link" href="/dashboard/posts">
                                     <i class="material-icons">assignment</i>

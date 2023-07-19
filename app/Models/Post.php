@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
@@ -30,15 +30,21 @@ class Post extends Model
 
         $query->when(
             $filters['authors'] ?? false,
-            fn ($query, $authors)
-            => $query->whereHas('user', fn ($query)
-            => $query->where('username', $authors))
+            fn($query, $authors) => $query->whereHas('user', fn($query) => $query->where('username', $authors))
         );
     }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function keranjang()
+    {
+        return $this->hasOne(Keranjang::class);
+    }
+    public function detail_transaksi()
+    {
+        return $this->hasOne(TransaksiDetail::class);
     }
 
     public function user()
@@ -55,8 +61,8 @@ class Post extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }

@@ -10,16 +10,17 @@
                         style="background-image: url('{{ $berita->image }}'); height:280px;">
                         <div class="card-body">
                             <h6 class="card-category text-info">{{ $berita->category->slug }}</h6>
-                            <a href="#pablo">
+                            <a href="/posts/{{ $berita->slug }}">
                                 <h3 class="card-title">{{ Str::title($berita->title) }}</h3>
                             </a>
                             <p class="card-description">
                                 {{ $berita->excerpt }}
                             </p>
+                            <h4 class="text-white">Rp. {{ number_format($berita->harga, 0, ',', '.') }}</h4>
                         </div>
                         <div class="card-footer justify-content-center"
                             style="z-index: 200; margin-top: -25px !important; ">
-                            <a href="/posts/{{ $berita->slug }}" class="btn btn-danger btn-round">
+                            <a href="/keranjang/{{ $berita->id }}" class="btn btn-danger btn-round">
                                 <i class="material-icons">shopping_cart</i> Order Now
                             </a>
                         </div>
@@ -44,16 +45,17 @@
                         style="background-image: url('{{ $kegiatan->image }}'); height:280px;">
                         <div class="card-body">
                             <h6 class="card-category text-info">{{ $kegiatan->category->slug }}</h6>
-                            <a href="#pablo">
+                            <a href="/posts/{{ $kegiatan->slug }}">
                                 <h3 class="card-title">{{ Str::title($kegiatan->title) }}</h3>
                             </a>
                             <p class="card-description">
                                 {{ $kegiatan->excerpt }}
                             </p>
+                            <h4 class="text-white">Rp. {{ number_format($kegiatan->harga, 0, ',', '.') }}</h4>
                         </div>
                         <div class="card-footer justify-content-center"
                             style="z-index: 200; margin-top: -25px !important; ">
-                            <a href="/posts/{{ $kegiatan->slug }}" class="btn btn-danger btn-round">
+                            <a href="/keranjang/{{ $kegiatan->id }}" class="btn btn-danger btn-round">
                                 <i class="material-icons">shopping_cart</i> Order Now
                             </a>
                         </div>

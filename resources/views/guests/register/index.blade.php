@@ -99,7 +99,7 @@
                         @csrf
                         <div class="card card-login card-hidden" style="padding: 20px">
                             <div class="card-header card-header-success text-center">
-                                <h4 class="card-title">Login Page</h4>
+                                <h4 class="card-title">Registration Page</h4>
                             </div>
                             <div class="header header-primary text-center">
                                 <h4 class="card-title">From Registration</h4>

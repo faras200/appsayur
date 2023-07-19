@@ -54,9 +54,12 @@
                                         <a href="/home?authors={{ $pos->user->username }}"><b>{{ $pos->user->username }}
                                             </b>
                                         </a>, {{ $pos->user->lapak->alamat ?? '' }}
-                                        <br>
-                                        {{ $pos->created_at->diffForHumans() }}
+
+                                        | {{ $pos->created_at->diffForHumans() }}
                                     </p>
+                                    <a href="/keranjang/{{ $pos->id }}" class="btn btn-danger btn-round">
+                                        <i class="material-icons">shopping_cart</i> Order Now
+                                    </a>
                                 </div>
                             </div>
                         </div>

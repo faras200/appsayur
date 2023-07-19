@@ -31,35 +31,35 @@
 </head>
 
 <body class="">
-    <div class="wrapper ">
-        @include('dashboard.layouts.sidebar')
-        <div class="main-panel">
-            @include('dashboard.layouts.navbar')
 
-            {{-- Content --}}
-            <div class="content" style="padding: 0px 15px !important">
-                <div class="container-fluid">
-                    @yield('container')
+    @include('dashboard.layouts.sidebar')
+    <div class="main-panel">
+        @include('dashboard.layouts.navbar')
+
+        {{-- Content --}}
+        <div class="content" style="padding: 0px 15px !important">
+            <div class="container-fluid">
+                @yield('container')
+            </div>
+        </div>
+        {{-- EndContent --}}
+
+        <footer class="footer " style="padding: 0px 0px !important">
+            <div class="container-fluid">
+
+                <div class="copyright float-center">
+
+                    Copyright
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, Built by
+                    <a href="https://www.instagram.com/faras_aan/" target="_blank">Angga</a>
                 </div>
             </div>
-            {{-- EndContent --}}
-
-            <footer class="footer " style="padding: 0px 0px !important">
-                <div class="container-fluid">
-
-                    <div class="copyright float-center">
-                        <button id="pay-button">Pay!</button>
-                        Copyright
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>, Built by
-                        <a href="https://www.instagram.com/faras_aan/" target="_blank">Angga</a>
-                    </div>
-                </div>
-            </footer>
-        </div>
+        </footer>
     </div>
+
     <!--   Core JS Files   -->
     <script src="/assetsadmin/js/core/jquery.min.js"></script>
     <script src="/assetsadmin/js/core/popper.min.js"></script>
@@ -120,41 +120,39 @@
         }
 
         var dengan_rupiah = document.getElementById('harga');
-    dengan_rupiah.addEventListener('keyup', function(e)
-    {
-        dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
-    });
-    
-    /* Fungsi */
-    function formatRupiah(angka, prefix)
-    {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split    = number_string.split(','),
-            sisa     = split[0].length % 3,
-            rupiah     = split[0].substr(0, sisa),
-            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
-            
-        if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
+        dengan_rupiah.addEventListener('keyup', function(e) {
+            dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
+        });
+
+        /* Fungsi */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
-        
-        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-    }
     </script>
 
 
 
-<script type="text/javascript">
-  // For example trigger on button clicked, or any time you need
-  var payButton = document.getElementById('pay-button');
-  payButton.addEventListener('click', function () {
-    // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-    window.snap.pay('TRANSACTION_TOKEN_HERE');
-    // customer will be redirected after completing payment pop-up
-  });
-</script>
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+            window.snap.pay('TRANSACTION_TOKEN_HERE');
+            // customer will be redirected after completing payment pop-up
+        });
+    </script>
 </body>
 
 </html>

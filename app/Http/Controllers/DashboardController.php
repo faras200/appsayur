@@ -63,30 +63,28 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function bayar(Request $request)
+    public function bayar()
     {
-        $serverkey = 'SB-Mid-server--qyBIk84MZouHfE3_JkdhAR-'; //prod
+        $serverkey = 'SB-Mid-server--qyBIk84MZouHfE3_JkdhAR-';
         $base = base64_encode($serverkey);
         $auth = 'Basic ' . $base;
         $user = Auth::user();
         $jayParsedAry2 = [
-            "payment_type" => 'gopay',
             "transaction_details" => [
                 "gross_amount" => 250000,
-                "order_id" => 'INV' . date('ymd') . rand(99999999999, 999999999999999999),
+                "order_id" => 'INV' . date('ymd') . rand(99, 9999),
+            ],
+            "credit_card" => [
+                "secure" => true,
             ],
             "customer_details" => [
                 "email" => $user->email,
                 "first_name" => $user->username,
             ],
-            "custom_expiry" => [
-                "order_time" => date('Y-m-d H:i:s') . ' +0700',
-                "expiry_duration" => 24,
-                "unit" => "hours",
-            ],
         ];
+        // dd($jayParsedAry2);
         try {
-            $output = self::$client->request('POST', self::$hostUrl . '/v2/charge', [
+            $output = self::$client->request('POST', self::$hostUrl . '/snap/v1/transactions', [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
@@ -95,14 +93,52 @@ class DashboardController extends Controller
                 'json' => $jayParsedAry2,
             ]);
             $output = json_decode($output->getBody(), true);
-        } catch (\Exception $th) {
-            throw $th;
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            $output = $e->getResponse();
+            // $output = json_decode($output, true);
+            // $output['success'] = false;
+            // $output['error'] = 'Accurate, Sedang Terjadi Gangguan!!';
+        } catch (\GuzzleHttp\Exception\RequestException $er) {
+            $output = $er->getResponse();
+            $output['success'] = false;
+            $output['error'] = 'Masalah Koneksi';
         }
 
         return $output;
     }
 
-    public function notifhandler(){
+    public function notifhandler()
+    {
         $notif = new \Midtrans\Notification();
+    }
+
+    public function bayar2($jumlah, $id)
+    {
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server--qyBIk84MZouHfE3_JkdhAR-';
+// Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+// Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+// Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+        $user = Auth::user();
+        $params = [
+            "transaction_details" => [
+                "gross_amount" => $jumlah,
+                "order_id" => $id,
+            ],
+            "credit_card" => [
+                "secure" => true,
+            ],
+            "customer_details" => [
+                "email" => $user->email,
+                "first_name" => $user->username,
+            ],
+        ];
+
+        return \Midtrans\Snap::getSnapToken($params);
     }
 }

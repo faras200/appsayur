@@ -48,6 +48,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
     public function ormawa()
     {
         return $this->belongsTo(Ormawa::class);

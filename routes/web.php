@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminLapakController;
 use App\Http\Controllers\AdminOrmawaController;
 use App\Http\Controllers\AnggotaOrmawaController;
 use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\EmailNotificationController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\PengambilanDanaController;
 use App\http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\http\Controllers\RegisterController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UploadImageController;
 use App\Models\Category;
 use App\Models\User;
@@ -135,5 +137,10 @@ Route::group(['middleware' => ['auth:user,admin']], function () {
     });
     Route::get('/kirimemail', [EmailNotificationController::class, 'index']);
 
-    Route::resource('/keranjang', KeranjangController::class);
+    Route::post('/keranjang/deletes', [KeranjangController::class, 'destroy'])->name('delete.keranjang');
+    Route::resource('/keranjang', KeranjangController::class)->names([
+        'show' => 'add.keranjang',
+    ]);
+    Route::resource('/checkout', CheckoutController::class);
+    Route::resource('/dashboard/transaksi', TransaksiController::class);
 });
