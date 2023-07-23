@@ -218,11 +218,33 @@
         }
 
         function cod() {
-            window.location.href = '/checkout?type=cod'
+            swal({
+                    title: "Yakin ingin checkout?",
+                    text: "Setelah checkout segera datang ke lapak pedagang!!",
+                    icon: "warning",
+                    buttons: ['Tidak', 'Yakin'],
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $('#ModalCheckout').modal('hide');
+                        window.location.href = '/checkout/proses?type=cod'
+                    }
+                });
         }
 
         function online() {
-            window.location.href = '/checkout?type=online'
+            swal({
+                    title: "Yakin ingin checkout?",
+                    text: "Setelah checkout segera lakukan pembayaran!!",
+                    icon: "warning",
+                    buttons: ['Tidak', 'Yakin'],
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $('#ModalCheckout').modal('hide');
+                        window.location.href = '/checkout/proses?type=online'
+                    }
+                });
         }
     </script>
 @endsection

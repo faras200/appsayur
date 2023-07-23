@@ -15,9 +15,8 @@
                                         <tr>
                                             <th class="text-center"></th>
                                             <th>Product</th>
-                                            <th class="">Status</th>
-                                            <th class="">Price</th>
-                                            <th class="">Qty</th>
+                                            <th class="text-right">Price</th>
+                                            <th class="text-right">Qty</th>
                                             <th class="text-right">Amount</th>
                                         </tr>
                                     </thead>
@@ -44,9 +43,6 @@
                                                     <td class="" style="font-size:18px">
                                                         <a href="/posts/{{ $item->slug }}">{{ $item->title }}</a>
                                                     </td>
-                                                    <td class="" style="font-size:18px">
-                                                        {{ $item->status }}
-                                                    </td>
 
                                                     <td class="" tyle="font-size:18px">
                                                         Rp.
@@ -56,7 +52,7 @@
                                                         {{ $item->qty }}
 
                                                     </td>
-                                                    <td class="text-right" style="font-size:18px">
+                                                    <td class="" style="font-size:18px">
                                                         Rp.
                                                         {{ number_format($item->harga * $item->qty, 0, ',', '.') }}
                                                         @php
@@ -68,10 +64,10 @@
                                             @endforeach
                                         @endforeach
                                         <tr>
-                                            <td class="td-name" colspan="5">
+                                            <td class="td-name" colspan="4">
                                                 Total Harga
                                             </td>
-                                            <td class="text-right" style="font-size:18px">
+                                            <td class="" style="font-size:18px">
                                                 Rp. {{ number_format($jumlah, 0, ',', '.') }}
                                             </td>
                                         </tr>
@@ -88,7 +84,7 @@
 
                     @can('role', ['pedagang'])
                         <div class="row d-flex justify-content-center">
-                            <button onclick="Selesaikan()" class="btn btn-primary col-10">
+                            <button class="btn btn-primary col-10">
                                 Selesaikan Transaksi Ini
                             </button>
                         </div>
@@ -98,7 +94,6 @@
         </div>
     </div>
     <input type="hidden" value="{{ $snap_token }}" id="snap">
-    <input type="hidden" value="{{ Str::afterLast(Str::title(Request::path()), '/') }}" id="id_trx">
 
     <script>
         window.addEventListener("load", (event) => {
@@ -106,21 +101,5 @@
                 embedId: 'snap-container'
             });
         });
-
-        function Selesaikan() {
-            const id = $('#id_trx').val();
-            console.log(id);
-            swal({
-                    title: "Yakin ingin Selesaikan Transaksi?",
-                    text: "Pastikan Transaksi Sudah Selesai!!",
-                    icon: "warning",
-                    buttons: ['Tidak', 'Yakin'],
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location.href = '/dashboard/transaksi/' + id + '/edit'
-                    }
-                });
-        }
     </script>
 @endsection

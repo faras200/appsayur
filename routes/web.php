@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\EmailNotificationController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LapakController;
+use App\Http\Controllers\LaporanController;
 use App\http\Controllers\LoginController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\PengajuanController;
@@ -142,6 +143,7 @@ Route::group(['middleware' => ['auth:user,admin']], function () {
     Route::resource('/keranjang', KeranjangController::class)->names([
         'show' => 'add.keranjang',
     ]);
+    Route::get('/checkout/proses', [CheckoutController::class, 'checkoutproses']);
     Route::resource('/checkout', CheckoutController::class);
     Route::resource('/dashboard/transaksi', TransaksiController::class);
     Route::get('/dashboard/users/delete/{id}', [DashboardUsersController::class, 'destroy']);

@@ -6,7 +6,7 @@
             <div class="card card-plain">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class=" {{ $snaptoken ? 'col-md-9' : 'col-md-12' }} ">
                             <h3 class="card-title">Checkout Barang</h3>
                             <br />
                             <div class="table-responsive">
@@ -37,17 +37,16 @@
                                                 <tr>
                                                     <td>
                                                         <div class="img-container">
-                                                            <img src="{{ $item->post->image }}" alt="...">
+                                                            <img src="{{ $item->image }}" alt="...">
                                                         </div>
                                                     </td>
                                                     <td class="td-name">
-                                                        <a
-                                                            href="/posts/{{ $item->post->slug }}">{{ $item->post->title }}</a>
+                                                        <a href="/posts/{{ $item->slug }}">{{ $item->title }}</a>
                                                     </td>
 
                                                     <td class="td-number text-right">
                                                         <small>Rp.
-                                                        </small>{{ number_format($item->post->harga, 0, ',', '.') }}
+                                                        </small>{{ number_format($item->harga, 0, ',', '.') }}
                                                     </td>
                                                     <td class="td-number">
                                                         {{ $item->qty }}
@@ -55,9 +54,9 @@
                                                     </td>
                                                     <td class="td-number">
                                                         <small>Rp.
-                                                        </small>{{ number_format($item->post->harga * $item->qty, 0, ',', '.') }}
+                                                        </small>{{ number_format($item->harga * $item->qty, 0, ',', '.') }}
                                                         @php
-                                                            $jumlah = $item->post->harga * $item->qty + $jumlah;
+                                                            $jumlah = $item->harga * $item->qty + $jumlah;
                                                         @endphp
                                                     </td>
 
@@ -77,15 +76,17 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div id="snap-container"></div>
-                        </div>
+                        @if ($snaptoken != null)
+                            <div class="col-md-3">
+                                <div id="snap-container"></div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <input type="hiden" value="{{ $snap_token }}" id="snap">
+    <input type="hidden" value="{{ $snap_token }}" id="snap">
 
     <script>
         window.addEventListener("load", (event) => {

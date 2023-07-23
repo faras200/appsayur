@@ -61,6 +61,7 @@
     </div>
 
     <!--   Core JS Files   -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/assetsadmin/js/core/jquery.min.js"></script>
     <script src="/assetsadmin/js/core/popper.min.js"></script>
     <script src="/assetsadmin/js/core/bootstrap-material-design.min.js"></script>
