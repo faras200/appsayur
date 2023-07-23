@@ -36,10 +36,7 @@
                                     <label for="role">Pilih peran</label>
                                     <select id="role" name="role" class="form-control mt-4"
                                         aria-label="With textarea" title="Role" value="">
-                                        <option value="" disabled selected></option>
-                                        <option value="upt_it">UPT IT</option>
-                                        <option value="baak">BAAK</option>
-                                        <option value="warek">Warek3</option>
+                                        <option value="administrator">Administrator</option>
                                     </select>
                                     @error('role')
                                         <div class="text-danger"> {{ $message }} </div>

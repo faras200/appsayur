@@ -23,6 +23,20 @@
         </style>
         <p>{!! $post->body !!}</p>
 
+        <div class="row d-flex justify-content-center mt-5 mb-5">
+            @if (Auth::guard('admin')->user() || Auth::guard('user')->user())
+                @if (@Auth::guard('user')->user()->role == 'pembeli')
+                    <a href="/keranjang/{{ $post->id }}" class="btn btn-danger btn-round">
+                        <i class="material-icons">shopping_cart</i> Order Now
+                    </a>
+                @endif
+            @else
+                <a href="/keranjang/{{ $post->id }}" class="btn btn-danger btn-round">
+                    <i class="material-icons">shopping_cart</i> Order Now
+                </a>
+            @endif
+        </div>
+
         <div id="disqus_thread"></div>
         <script>
             /**

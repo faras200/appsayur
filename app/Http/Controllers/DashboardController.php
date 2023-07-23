@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\Anggota;
 use App\Models\Category;
-use App\Models\Dana;
 use App\Models\Lapak;
 use App\Models\Pengajuan;
 use App\Models\Persetujuan;
 use App\Models\Post;
+use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,12 +53,12 @@ class DashboardController extends Controller
         }
         return view('dashboard.index', [
             'admin' => Admin::count(),
-            'anggota' => Anggota::count(),
+            'anggota' => User::where('role', 'pembeli')->count(),
             'pengajuan' => Pengajuan::count(),
             'lapak' => Lapak::count(),
             'post' => Post::count(),
             'category' => Category::count(),
-            'dana' => Dana::count(),
+            'dana' => Transaksi::where('status', 'SELESAI')->count(),
             'ajuan' => $ajuan,
         ]);
     }

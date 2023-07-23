@@ -57,9 +57,17 @@
 
                                         | {{ $pos->created_at->diffForHumans() }}
                                     </p>
-                                    <a href="/keranjang/{{ $pos->id }}" class="btn btn-danger btn-round">
-                                        <i class="material-icons">shopping_cart</i> Order Now
-                                    </a>
+                                    @if (Auth::guard('admin')->user() || Auth::guard('user')->user())
+                                        @if (@Auth::guard('user')->user()->role == 'pembeli')
+                                            <a href="/keranjang/{{ $pos->id }}" class="btn btn-danger btn-round">
+                                                <i class="material-icons">shopping_cart</i> Order Now
+                                            </a>
+                                        @endif
+                                    @else
+                                        <a href="/keranjang/{{ $pos->id }}" class="btn btn-danger btn-round">
+                                            <i class="material-icons">shopping_cart</i> Order Now
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

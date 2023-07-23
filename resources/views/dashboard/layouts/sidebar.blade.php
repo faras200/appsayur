@@ -10,13 +10,15 @@
                 <img src="/assetsadmin/img/faces/admin.jpg" />
             </div>
             <div class="user-info">
-                <a data-toggle="collapse" href="#collapseExample" class="username">
+                <a class="username">
                     <span>
                         {{ auth()->user()->role == 'pembeli' ? 'User' : 'Admin' }} {{ auth()->user()->name }}
-                        <b class="caret"></b>
+                        @can('role', ['pedagang'])
+                            <b class="caret"></b>
+                        @endcan
                     </span>
                 </a>
-                @can('role', ['pembeli', 'pedagang'])
+                @can('role', ['pedagang'])
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
                             <li class="nav-item">
@@ -37,12 +39,14 @@
                     <p> Home </p>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard">
-                    <i class="material-icons">dashboard</i>
-                    <p> Dashboard </p>
-                </a>
-            </li>
+            @canany('role', ['pedagang', 'administrator'])
+                <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="material-icons">dashboard</i>
+                        <p> Dashboard </p>
+                    </a>
+                </li>
+            @endcanany
             @can('role', ['administrator'])
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
@@ -63,6 +67,12 @@
                                 <a class="nav-link" href="/dashboard/admin-lapak">
                                     <i class="material-icons">supervised_user_circle</i>
                                     <p> Admin Lapak</p>
+                                </a>
+                            </li>
+                            <li class="nav-item  {{ Request::is('dashboard/users') ? 'active' : '' }} ">
+                                <a class="nav-link" href="/dashboard/users">
+                                    <i class="material-icons">group</i>
+                                    <p> Users</p>
                                 </a>
                             </li>
                         </ul>
@@ -97,24 +107,24 @@
                     <p>Pengambilan Dana </p>
                 </a>
             </li> --}}
-            @canany('role', ['administrator', 'pedagang'])
-                <li class="nav-item {{ Request::is('dashboard/laporan*') ? 'active' : '' }} ">
-                    <a class="nav-link" href="/dashboard/laporan">
-                        <i class="material-icons">description</i>
-                        <p>Laporan Transaksi </p>
-                    </a>
-                </li>
-            @endcanany
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#konten">
-                    <i class="material-icons">dashboard_customize</i>
-                    <p> Kelola Konten
-                        <b class="caret"></b>
-                    </p>
+
+            <li class="nav-item {{ Request::is('dashboard/laporan*') ? 'active' : '' }} ">
+                <a class="nav-link" href="/dashboard/laporan">
+                    <i class="material-icons">description</i>
+                    <p>Laporan Transaksi </p>
                 </a>
-                <div class="collapse" id="konten">
-                    <ul class="nav">
-                        @canany('role', ['pedagang'])
+            </li>
+            @canany('role', ['pedagang', 'administrator'])
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#konten">
+                        <i class="material-icons">dashboard_customize</i>
+                        <p> Kelola Konten
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="konten">
+                        <ul class="nav">
+
                             <li class="nav-item {{ Request::is('dashboard/posts*') ? 'active' : '' }} ">
                                 <a class="nav-link" href="/dashboard/posts">
                                     <i class="material-icons">assignment</i>
@@ -130,12 +140,14 @@
                                 </a>
                             </li>
                         @endcanany
-                        <li class="nav-item {{ Request::is('dashboard/media*') ? 'active' : '' }} ">
-                            <a class="nav-link" href="/dashboard/media">
-                                <i class="material-icons">folder</i>
-                                <p> Media </p>
-                            </a>
-                        </li>
+                        @canany('role', ['pedagang', 'administrator'])
+                            <li class="nav-item {{ Request::is('dashboard/media*') ? 'active' : '' }} ">
+                                <a class="nav-link" href="/dashboard/media">
+                                    <i class="material-icons">folder</i>
+                                    <p> Media </p>
+                                </a>
+                            </li>
+                        @endcanany
                     </ul>
                 </div>
             </li>

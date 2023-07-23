@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\EmailNotificationController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LapakController;
@@ -143,4 +144,7 @@ Route::group(['middleware' => ['auth:user,admin']], function () {
     ]);
     Route::resource('/checkout', CheckoutController::class);
     Route::resource('/dashboard/transaksi', TransaksiController::class);
+    Route::get('/dashboard/users/delete/{id}', [DashboardUsersController::class, 'destroy']);
+    Route::resource('/dashboard/users', DashboardUsersController::class);
+    Route::get('/dashboard/laporan', [LaporanController::class, 'index']);
 });

@@ -77,6 +77,17 @@
                                         </tr>
                                     @endforeach
                                 @endforeach
+
+                                @if ($jumlah == 0)
+                                    <tr>
+                                        <th colspan="6" style="font-size: 25px; margin:20px 30px;"
+                                            class="text-center td-name">
+
+                                            Tidak Ada Barang di Keranjang
+
+                                        </th>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <td class="td-name" colspan="4">
                                         Total Harga
@@ -87,7 +98,12 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td>
+                                    <td colspan="2">
+                                        <a href="/" class="btn btn-warning">Kembali
+                                            Belanja </a>
+                                    </td>
+                                    </td>
+                                    <td class="td-number" colspan="2">
                                     <td class="td-number" colspan="2"><button type="button" onclick="checkout()"
                                             class="btn btn-primary">Checkout
                                             Sekarang </button></td>
@@ -96,6 +112,48 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalCheckout" style="z-index: 10000 !important;" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Checkout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">Pilih Metode Pembayaran</h3>
+                    <div class="row">
+                        <div class="col-md-6 text-center" onclick="cod()">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <img src="{{ asset('assets/img/cod.png') }}" alt="" width="100%"
+                                        height="80px">
+                                    <h4 style="font-weight:700">Bayar Di Tempat</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center" onclick="online()">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <img style="margin-top:15px;"
+                                        src="https://seeklogo.com/images/Q/quick-response-code-indonesia-standard-qris-logo-F300D5EB32-seeklogo.com.png"
+                                        alt="" width="100%">
+                                    <h4 style="margin-top: 17px; font-weight:700">Bayar Online Qris</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary">Save changes</button>
+</div> --}}
             </div>
         </div>
     </div>
@@ -154,17 +212,17 @@
         }
 
         function checkout() {
-            swal({
-                    title: "Yakin ingin checkout?",
-                    text: "Setelah checkout segera lakukan pembayaran!!",
-                    icon: "warning",
-                    buttons: ['Tidak', 'Yakin'],
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location.href = '/checkout'
-                    }
-                });
+
+            $('#ModalCheckout').modal('show');
+
+        }
+
+        function cod() {
+            window.location.href = '/checkout?type=cod'
+        }
+
+        function online() {
+            window.location.href = '/checkout?type=online'
         }
     </script>
 @endsection

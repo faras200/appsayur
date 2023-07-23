@@ -38,9 +38,7 @@
                                     <select id="role" name="role" class="form-control mt-4"
                                         aria-label="With textarea" title="Role" value="">
                                         <option value="{{ $admin->role }}" selected>{{ $admin->role }}</option>
-                                        <option value="upt_it">UPT IT</option>
-                                        <option value="baak">BAAK</option>
-                                        <option value="warek">Warek3</option>
+
                                     </select>
                                     @error('role')
                                         <div class="text-danger"> {{ $message }} </div>

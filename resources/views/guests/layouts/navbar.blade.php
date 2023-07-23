@@ -30,12 +30,14 @@
                     </a>
 
                 </li>
-                <li class=" nav-item">
-                    <a href="/keranjang" class=" nav-link">
-                        <i class="material-icons">shopping_cart</i> Keranjang
-                    </a>
+                @can('role', ['pembeli'])
+                    <li class=" nav-item">
+                        <a href="/keranjang" class=" nav-link">
+                            <i class="material-icons">shopping_cart</i> Keranjang
+                        </a>
 
-                </li>
+                    </li>
+                @endcan
                 <li class=" nav-item">
                     <a href="/posts?category=sayuran" class=" nav-link">
                         <i class="material-icons">newspaper</i> Sayuran

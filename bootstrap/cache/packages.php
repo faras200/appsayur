@@ -42,15 +42,11 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'itsgoingd/clockwork' => 
+  'laravel/breeze' => 
   array (
     'providers' => 
     array (
-      0 => 'Clockwork\\Support\\Laravel\\ClockworkServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Clockwork' => 'Clockwork\\Support\\Laravel\\Facade',
+      0 => 'Laravel\\Breeze\\BreezeServiceProvider',
     ),
   ),
   'laravel/sail' => 
@@ -74,6 +70,13 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
+  'laravelista/comments' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravelista\\Comments\\ServiceProvider',
+    ),
+  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -88,11 +91,11 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'spatie/laravel-medialibrary' => 
+  'spatie/laravel-honeypot' => 
   array (
     'providers' => 
     array (
-      0 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
+      0 => 'Spatie\\Honeypot\\HoneypotServiceProvider',
     ),
   ),
   'unisharp/laravel-filemanager' => 

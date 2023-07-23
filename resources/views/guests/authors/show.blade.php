@@ -28,27 +28,43 @@
                         <div class="row collections">
                             @if ($posts->count())
                                 @foreach ($posts as $post)
-                                    <div class="col-md-4">
-                                        <a href="/posts/{{ $post->slug }}">
-                                            <div class="card card-background"
-                                                style="background-image: url('{{ $post->image }}')">
-
-                                                <div class="card-body">
-                                                    <label
-                                                        class="badge {{ Str::is($post->category->name, 'Sayuran')
-                                                            ? 'badge-success'
-                                                            : (Str::is($post->category->name, 'Buah-buahan')
-                                                                ? 'badge-warning'
-                                                                : 'badge-info') }}  ">{{ $post->category->name }}</label>
-                                                    <a href="/posts/{{ $post->slug }}">
-                                                        <h3 class="card-title">{{ Str::title($post->title) }}</h3>
-                                                    </a>
-                                                    <p class="card-description">
-                                                        {{ $post->excerpt }}
-                                                    </p>
-                                                </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <div class="card card-raised card-background"
+                                            style="background-image: url('{{ $post->image }}'); height:280px;">
+                                            <div class="card-body">
+                                                <label style="font-size: 12px;"
+                                                    class="badge {{ Str::is($post->category->name, 'Sayuran')
+                                                        ? 'badge-success'
+                                                        : (Str::is($post->category->name, 'Buah-buahan')
+                                                            ? 'badge-warning'
+                                                            : 'badge-info') }}  ">{{ $post->category->name }}</label>
+                                                <a href="/posts/{{ $post->slug }}">
+                                                    <h3 class="card-title">{{ Str::title($post->title) }}</h3>
+                                                </a>
+                                                <p class="card-description">
+                                                    {{ $post->excerpt }}
+                                                </p>
+                                                <h4 class="text-white">Rp. {{ number_format($post->harga, 0, ',', '.') }}
+                                                </h4>
                                             </div>
-                                        </a>
+                                            <div class="card-footer justify-content-center"
+                                                style="z-index: 200; margin-top: -25px !important; ">
+                                                @if (Auth::guard('admin')->user() || Auth::guard('user')->user())
+                                                    @if (@Auth::guard('user')->user()->role == 'pembeli')
+                                                        <a href="/keranjang/{{ $post->id }}"
+                                                            class="btn btn-danger btn-round">
+                                                            <i class="material-icons">shopping_cart</i> Order Now
+                                                        </a>
+                                                    @endif
+                                                @else
+                                                    <a href="/keranjang/{{ $post->id }}"
+                                                        class="btn btn-danger btn-round">
+                                                        <i class="material-icons">shopping_cart</i> Order Now
+                                                    </a>
+                                                @endif
+                                            </div>
+
+                                        </div>
                                     </div>
                                 @endforeach
                             @else

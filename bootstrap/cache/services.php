@@ -28,18 +28,19 @@
     24 => 'Facade\\Ignition\\IgnitionServiceProvider',
     25 => 'Fruitcake\\Cors\\CorsServiceProvider',
     26 => 'Intervention\\Image\\ImageServiceProvider',
-    27 => 'Clockwork\\Support\\Laravel\\ClockworkServiceProvider',
+    27 => 'Laravel\\Breeze\\BreezeServiceProvider',
     28 => 'Laravel\\Sail\\SailServiceProvider',
     29 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     30 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    31 => 'Carbon\\Laravel\\ServiceProvider',
-    32 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    33 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
-    34 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
-    35 => 'App\\Providers\\AppServiceProvider',
-    36 => 'App\\Providers\\AuthServiceProvider',
-    37 => 'App\\Providers\\EventServiceProvider',
-    38 => 'App\\Providers\\RouteServiceProvider',
+    31 => 'Laravelista\\Comments\\ServiceProvider',
+    32 => 'Carbon\\Laravel\\ServiceProvider',
+    33 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    34 => 'Spatie\\Honeypot\\HoneypotServiceProvider',
+    35 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
+    36 => 'App\\Providers\\AppServiceProvider',
+    37 => 'App\\Providers\\AuthServiceProvider',
+    38 => 'App\\Providers\\EventServiceProvider',
+    39 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -58,11 +59,11 @@
     12 => 'Facade\\Ignition\\IgnitionServiceProvider',
     13 => 'Fruitcake\\Cors\\CorsServiceProvider',
     14 => 'Intervention\\Image\\ImageServiceProvider',
-    15 => 'Clockwork\\Support\\Laravel\\ClockworkServiceProvider',
-    16 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    15 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    16 => 'Laravelista\\Comments\\ServiceProvider',
     17 => 'Carbon\\Laravel\\ServiceProvider',
     18 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    19 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
+    19 => 'Spatie\\Honeypot\\HoneypotServiceProvider',
     20 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
     21 => 'App\\Providers\\AppServiceProvider',
     22 => 'App\\Providers\\AuthServiceProvider',
@@ -191,6 +192,7 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
+    'Laravel\\Breeze\\Console\\InstallCommand' => 'Laravel\\Breeze\\BreezeServiceProvider',
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
@@ -231,6 +233,9 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
+    array (
+    ),
+    'Laravel\\Breeze\\BreezeServiceProvider' => 
     array (
     ),
     'Laravel\\Sail\\SailServiceProvider' => 

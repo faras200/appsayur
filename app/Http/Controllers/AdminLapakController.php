@@ -17,7 +17,7 @@ class AdminLapakController extends Controller
     public function index()
     {
         return view('dashboard.admin-lapak.index', [
-            'admins' => User::all(),
+            'admins' => User::where('role', 'pedagang')->get(),
         ]);
     }
 

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
@@ -19,8 +19,14 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        if ($user->role == 'administrator') {
+            return view('dashboard.posts.index', [
+                'posts' => Post::all(),
+            ]);
+        }
         return view('dashboard.posts.index', [
-            'posts' => Post::where('user_id', auth()->user()->id)->get()
+            'posts' => Post::where('user_id', $user->id)->get(),
         ]);
     }
 
@@ -32,7 +38,7 @@ class DashboardPostController extends Controller
     public function create()
     {
         return view('dashboard.posts.create', [
-            'categories' => Category::all()
+            'categories' => Category::all(),
         ]);
     }
 
@@ -46,11 +52,11 @@ class DashboardPostController extends Controller
     {
         $validasi = $request->validate([
             'title' => 'required|max:255',
-            'slug'  => 'required|unique:posts',
-            'image'  => 'required|max:5000',
+            'slug' => 'required|unique:posts',
+            'image' => 'required|max:5000',
             'category_id' => 'required',
             'body' => 'required',
-            'harga' => 'required'
+            'harga' => 'required',
         ]);
 
         // if ($request->file('image')) {
@@ -64,7 +70,7 @@ class DashboardPostController extends Controller
         $numeric_amount = str_replace('.', '', $numeric_amount);
 
         // Mengonversi menjadi angka
-        $numeric_amount = (int)$numeric_amount;
+        $numeric_amount = (int) $numeric_amount;
         $validasi['harga'] = $numeric_amount;
         $validasi['user_id'] = auth()->user()->id;
         $validasi['excerpt'] = Str::limit(strip_tags($request->body), 150);
@@ -84,7 +90,7 @@ class DashboardPostController extends Controller
     {
         //
         return view('dashboard.posts.show', [
-            'post' => $post
+            'post' => $post,
         ]);
     }
 
@@ -98,7 +104,7 @@ class DashboardPostController extends Controller
     {
         return view('dashboard.posts.edit', [
             'post' => $post,
-            'categories' => Category::all()
+            'categories' => Category::all(),
         ]);
     }
 
@@ -114,25 +120,25 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
-            'image'  => 'required|max:5000',
+            'image' => 'required|max:5000',
             'body' => 'required',
-            'harga' => 'required'
+            'harga' => 'required',
         ];
 
         if ($request->slug != $post->slug) {
             $rules['slug'] = 'required|unique:posts';
         }
         $validasi = $request->validate($rules);
-        
+
         $numeric_amount = str_replace(['Rp. ', '.'], '', $validasi['harga']);
 
         // Menghapus pemisah ribuan berulang
         $numeric_amount = str_replace('.', '', $numeric_amount);
 
         // Mengonversi menjadi angka
-        $numeric_amount = (int)$numeric_amount;
+        $numeric_amount = (int) $numeric_amount;
         $validasi['harga'] = $numeric_amount;
-        
+
         $validasi['user_id'] = auth()->user()->id;
         $validasi['excerpt'] = Str::limit(strip_tags($request->body), 150);
 
