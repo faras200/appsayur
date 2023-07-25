@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class LoginController extends Controller
 {
     public function index()
     {
         return view('guests.login.index', [
             'title' => 'Login',
-            'active' => 'login'
+            'active' => 'login',
         ]);
     }
 
@@ -20,7 +19,7 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if (Auth::guard('admin')->attempt($credentials, $request->remember)) {
@@ -30,7 +29,6 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
-
 
         return back()->with('loginError', 'Login Gagal');
     }
@@ -69,8 +67,6 @@ class LoginController extends Controller
     //     return redirect('/home');
     // }
 }
-
-
 
 // class LoginAdminController extends Controller
 // {

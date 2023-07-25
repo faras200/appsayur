@@ -51,6 +51,10 @@ class DashboardController extends Controller
         if (auth()->user()->role == 'bem' || auth()->user()->role == 'dema') {
             $ajuan = Pengajuan::where('ormawa_id', auth()->user()->ormawa_id)->get();
         }
+
+        if (Auth::user()->role == 'pembeli') {
+            return redirect('/dashboard/transaksi');
+        }
         return view('dashboard.index', [
             'admin' => Admin::count(),
             'anggota' => User::where('role', 'pembeli')->count(),
